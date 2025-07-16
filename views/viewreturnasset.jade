@@ -1,0 +1,72 @@
+extends layout 
+
+block content
+    .container-fluid.py-4
+      .row
+      .col-12
+          h1.mb-4.text-center Return Asset Management System
+          
+          .card.shadow
+            .card-header.bg-primary.text-white
+              .d-flex.justify-content-between.align-items-center
+                h5.mb-0 Assets List
+                a.btn.btn-light.btn-sm(href='/assets/issueasset') issue asset to Employee
+                
+            .card-body
+              
+                 
+                      
+              .table-responsive
+                table#employeeTable.table.table-striped.table-hover
+                  thead.table-dark
+                    tr
+                      th ASSET NAME
+                      th ASSET ID
+                      th USER NAME
+                      th USER ID
+                      th ISSUE DATE
+                      th ACTION
+                  tbody
+                    each asset in assets
+                      tr
+                        td= asset.name
+                        td= asset.id
+                        td= asset.currentEmployee.name
+                        td= asset.currentEmployee.id 
+                        td=asset.issuedDate.toISOString().split('T')[0]
+                        td
+                         form(action='/assets/returnasset/'+ asset.id, method='POST')
+                           .input-group.input-group-sm
+                              input.form-control(type='text', name='reason', placeholder='Reason', required)
+                              button.btn.btn-outline-primary(type='submit') Return
+                           
+
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js')
+   
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
+   
+    script(src='https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js')
+    script.
+      $(document).ready(function() {
+        var table = $('#employeeTable').DataTable({
+          searching: true,
+          ordering: true,
+          paging: true,
+          filtering : true,
+          pageLength: 10,
+          responsive: true,
+          language: {
+            search: "Search asset:",
+            lengthMenu: "Show _MENU_ asset per page",
+            info: "Showing _START_ to _END_ of _TOTAL_ asset",
+            infoEmpty: "No asset found",
+            infoFiltered: "(filtered from _MAX_ total asset)"
+          }
+        });
+
+       
+
+       
+      });

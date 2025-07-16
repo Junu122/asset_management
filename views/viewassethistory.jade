@@ -1,0 +1,98 @@
+extends layout 
+
+block content
+    .container.py-4
+      
+      
+      .asset-header
+        .row.align-items-center
+          .col-md-8
+            h2 #{asset.name}
+            .row.mt-3
+              .col-md-6
+                p
+                  strong Serial Number: 
+                  | #{asset.serialNumber}
+                p
+                  strong Make: 
+                  | #{asset.make}
+                p
+                  strong Model: 
+                  | #{asset.model}
+              .col-md-6
+                p
+                  strong Purchase Date: 
+                  | #{new Date(asset.purchaseDate).toLocaleDateString()}
+                p
+                  strong Branch: 
+                  | #{asset.branch}
+                p
+                  strong Current Employee: 
+                  if asset.currentEmployeeId
+                    |assigned
+                  else
+                    | Not Assigned
+          .col-md-4.text-end
+            span.status-badge(class=`badge-${asset.status.toLowerCase()}`)
+              | #{asset.status}
+      
+      // History Table
+      .card.shadow
+        .card-header.bg-primary.text-white
+          h4.mb-0 Asset History
+        .card-body
+          .table-responsive
+            table.table.table-striped.history-table
+              thead
+                tr
+                  th Action
+                  th Employee
+                  th Position
+                  th Date & Time
+                  th Reason
+                  th Remarks
+              tbody
+                each item in asset.history.sort((a, b) => new Date(b.actionDate) - new Date(a.actionDate))
+                  tr.history-row
+                    td
+                      case item.action
+                        when 'ISSUE'
+                          span.badge.bg-success ISSUE
+                        when 'RETURN'
+                          span.badge.bg-danger RETURN
+                        when 'PURCHASE'
+                          span.badge.bg-info PURCHASE
+                        default
+                          span.badge.bg-secondary #{item.action}
+                    td
+                      if item.employee
+                        | #{item.employee.name}
+                      else
+                        | N/A
+                    td
+                      if item.employee
+                        | #{item.employee.position}
+                      else
+                        | N/A
+                    td #{new Date(item.actionDate).toLocaleString()}
+                    td #{item.reason || 'N/A'}
+                    td #{item.remarks || 'N/A'}
+
+    // Bootstrap JS
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js")
+    
+    script.
+     
+      function getCurrentEmployee(history, employeeId) {
+        const latestIssue = history
+          .filter(h => h.action === 'ISSUE' && h.employee)
+          .sort((a, b) => new Date(b.actionDate) - new Date(a.actionDate))[0];
+        
+        return latestIssue ? `${latestIssue.employee.name} (${latestIssue.employee.position})` : 'Not Assigned';
+      }
+      
+    
+      
+          
+        
+      

@@ -1,0 +1,125 @@
+.asset-header {
+        background: linear-gradient(135deg, #007bff, #6610f2);
+        color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+      }
+      
+      .status-badge {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+      }
+      
+      .badge-issued { background-color: #28a745; }
+      .badge-returned { background-color: #dc3545; }
+      .badge-purchased { background-color: #17a2b8; }
+      
+      .history-table th {
+        background-color: #343a40;
+        color: white;
+      }
+      
+      .history-row:hover {
+        background-color: #f8f9fa;
+      }
+
+
+      .bg-gradient-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .card {
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    
+    .card-header {
+      padding: 1.5rem 2rem;
+    }
+    
+    .form-floating > .form-select {
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-floating > .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .form-floating > label {
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    .btn {
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-transform: none;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-success {
+      background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+      border: none;
+      box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3);
+    }
+    
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(86, 171, 47, 0.4);
+    }
+    
+    .btn-outline-secondary {
+      border: 2px solid #6c757d;
+      color: #6c757d;
+    }
+    
+    .btn-outline-secondary:hover {
+      background-color: #6c757d;
+      transform: translateY(-2px);
+    }
+    
+    .alert-danger {
+      border-radius: 10px;
+      background-color: #f8d7da;
+      border-left: 4px solid #dc3545;
+    }
+    
+    .badge {
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+    }
+    
+    .shadow-lg {
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    }
+    
+    @media (max-width: 768px) {
+      .card-body {
+        padding: 2rem !important;
+      }
+      
+      .d-flex.justify-content-between {
+        flex-direction: column;
+      }
+      
+      .d-flex.gap-2 {
+        width: 100%;
+        justify-content: center;
+      }
+    }

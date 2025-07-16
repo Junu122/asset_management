@@ -1,0 +1,61 @@
+extends layout 
+
+block content
+  .container.py-5
+    .row.justify-content-center
+      .col-lg-10.col-xl-8
+        .card.shadow-lg.border-0
+          .card-header.bg-gradient-success.text-primary.border-0
+            .d-flex.align-items-center.justify-content-between
+              h4.mb-0.fw-bold
+                i.fas.fa-handshake.me-3
+                | Issue Asset to Employee
+              .badge.bg-light.text-primary.fs-6 Asset Management
+          
+          .card-body.p-5
+            if error
+              .alert.alert-danger.border-0.shadow-sm
+                .d-flex.align-items-center
+                  i.fas.fa-exclamation-triangle.me-2
+                  div
+                    strong Error: 
+                    = error
+            
+            form(method='POST', action=`/assets/issueasset`)
+              .row.g-4
+                .col-md-6
+                  .form-floating
+                    select.form-select(id='assetId', name='assetId', required, style='height: 58px;')
+                      option(value='') Select Asset
+                      each asset in assets
+                        option(value=asset.id) #{asset.name} #{asset.serialNumber} - #{asset.model}
+                    label.form-label(for='assetId')
+                      i.fas.fa-laptop.me-2
+                      | Asset *
+                
+                .col-md-6
+                  .form-floating
+                    select.form-select(id='employeeId', name='employeeId', required, style='height: 58px;')
+                      option(value='') Select Employee
+                      each employee in employees
+                        option(value=employee.id) #{employee.id} - #{employee.name} - #{employee.position}
+                    label.form-label(for='employeeId')
+                      i.fas.fa-user.me-2
+                      | Employee *
+              
+              .row.mt-5
+                .col-12
+                  .d-flex.flex-wrap.gap-3.justify-content-between
+                    .d-flex.gap-2
+                      button.btn.btn-primary.btn-lg.px-4(type='submit')
+                        i.fas.fa-handshake.me-2
+                        | Issue Asset
+                      a.btn.btn-outline-secondary.btn-lg.px-4(href='/assets/viewallassets')
+                        i.fas.fa-arrow-left.me-2
+                        | Cancel
+                    
+                    a.btn.btn-success.btn-lg.px-4(href='/assets/returnasset')
+                      i.fas.fa-undo.me-2
+                      | Return Assets
+
+  

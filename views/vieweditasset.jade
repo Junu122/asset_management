@@ -1,0 +1,64 @@
+extends layout 
+
+block content
+   
+  
+  .container.py-4
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow
+          .card-header.bg-primary.text-white
+            h5.mb-0
+              i.fas.fa-user-edit.me-2
+              | Edit Asset
+          .card-body
+            if error
+              .alert.alert-danger
+                strong Error: 
+                = error
+            
+            form(method='POST', action=`/assets/edit/${asset.id}`)
+              .row
+                .col-md-6
+                  .mb-3
+                    label.form-label(for='name') Name 
+                    input.form-control(type='text', id='name', name='name', value=asset.name, required)
+                 .col-md-6
+                  .mb-3
+                    label.form-label(for='serialNumber') Serial Number
+                    input.form-control(type='text', id='serialNumber', name='serialNumber', value=asset.serialNumber, required)
+              .row
+                .col-md-6
+                  .mb-3
+                    label.form-label(for='make') Make 
+                    input.form-control(type='text', id='make', name='make', value=asset.make, required)
+                 .col-md-6
+                  .mb-3
+                    label.form-label(for='model') Model
+                    input.form-control(type='text', id='model', name='model', value=asset.serialNumber, required)
+               
+              .row
+                .col-md-6
+                  .mb-3
+                    label.form-label(for='purchaseDate') purchase Date 
+                    input.form-control(type='date', id='purchaseDate', name='purchaseDate', value=asset.purchaseDate, required)
+                 .col-md-6
+                  .mb-3
+                    label.form-label(for='branch') Branch Allocated
+                    input.form-control(type='text', id='branch', name='branch', value=asset.branch, required)
+              .row
+                .col-md-6
+                  .mb-3
+                    label.form-label(for='assetType') staus *
+                    select.form-select(id='assetType', name='assetType', required)
+                      each category in assetCategories
+                       option(value=category.id, selected=(category.id === asset.assetType))= category.categoryName
+
+              .row
+               .d-flex.gap-2
+                button.btn.btn-primary(type='submit')
+                  i.fas.fa-save.me-2
+                  | Update Asset
+                a.btn.btn-secondary(href='/assets/viewallassets')
+                  i.fas.fa-arrow-left.me-2
+                  | Cancel

@@ -1,0 +1,59 @@
+extends layout 
+
+block content
+    .container.py-4
+      .row.justify-content-center
+        .col-lg-8
+          .card.shadow
+            .card-header.bg-success.text-white
+              h4.mb-0 Add New Asset Category
+            
+            .card-body
+              form#addEmployeeForm(action='/assetcategories/addcategory', method='POST')
+                .row
+                  .col-md-6
+                    .form-group.mb-3
+                      label.form-label(for='categoryName') Category Name 
+                      input#categoryName.form-control(type='text', name='categoryName', required)
+                  
+                  .col-md-6
+                    .form-group.mb-3
+                      label.form-label(for='description')  Description
+                      input#description.form-control(type='text', name='description', required)
+                
+                .row
+                 
+                  
+                  
+                     
+                .row
+                  .col-12
+                    .d-flex.justify-content-between
+                      a.btn.btn-secondary(href='/assetcategories/viewassetcategories') Cancel
+                      button.btn.btn-success(type='submit') Add category
+
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js')
+    script.
+      $(document).ready(function() {
+        $('#addEmployeeForm').on('submit', function(e) {
+          const firstName = $('#firstName').val().trim();
+          const lastName = $('#lastName').val().trim();
+          const email = $('#email').val().trim();
+          const department = $('#department').val();
+          const position = $('#position').val().trim();
+          const salary = $('#salary').val();
+          
+          if (!firstName || !lastName || !email || !department || !position || !salary) {
+            alert('Please fill in all required fields.');
+            e.preventDefault();
+            return false;
+          }
+          
+          if (salary <= 0) {
+            alert('Salary must be greater than 0.');
+            e.preventDefault();
+            return false;
+          }
+        });
+      });

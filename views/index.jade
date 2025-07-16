@@ -1,0 +1,91 @@
+extends layout
+    
+block content
+
+    .container.mt-5
+      .row
+        .col-12
+          .jumbotron.bg-light.p-5.rounded
+            h1.display-4.text-center Asset Management System
+            p.lead.text-center Manage employee assets and issue new assets efficiently
+            hr.my-4
+            
+
+      .row.mt-5
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fas.fa-users.fa-3x.text-primary.mb-3
+              h4.card-title Employees Management
+              p.card-text View and manage Employees in Company
+              a.btn.btn-primary.btn-lg(href="/employees/viewallemployees")
+                i.fas.fa-eye.me-2
+                | Manage Employees
+        
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fa-solid.fa-laptop.fa-3x.text-success.mb-3
+              h4.card-title Asset Management Assets
+              p.card-text View Edit and Add Assets
+              a.btn.btn-success.btn-lg(href="/assets/viewallassets")
+                i.fas.fa-plus.me-2
+                | Manage   Assets
+      .row.mt-1
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fa-solid.fa-boxes-stacked.fa-3x.text-primary.mb-3
+              h4.card-title Stocks
+              p.card-text View stocks and branch
+              a.btn.btn-primary.btn-lg(href="/stocks/viewstocks")
+                i.fas.fa-eye.me-2
+                | View Stocks of Assets
+        
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fas.fa-plus-circle.fa-3x.text-success.mb-3
+              h4.card-title Asset Allocation and Returning
+              p.card-text Issue new assets to employees. Return Assets from employees
+              a.btn.btn-success.btn-lg(href="/assets/issueasset")
+                i.fas.fa-plus.me-2
+                | Allocate / Return  Assets
+      .row.mt-1
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fa-solid.fa-trash.fa-3x.text-danger.mb-3
+              h4.card-title Scrap Asset
+              p.card-text View And Scrap Asset
+              a.btn.btn-danger.btn-lg(href="/assets/scrapasset")
+                i.fa-solid.fa-trash.me-2.text-danger
+                | View and add to Scrap
+        
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fa-solid.fa-clock.fa-3x.text-success.mb-3
+              h4.card-title Asset History
+              p.card-text View Full history of Assets
+              a.btn.btn-success.btn-lg(href="/assethistory/allassets")
+                i.fas.fa-eye.me-2
+                | View Asset History
+   
+     
+      .row.mt-5
+        .col-md-6.mb-4
+          .card.h-100.shadow-sm
+            .card-body.text-center
+              i.fas.fa-plus-circle.fa-3x.text-primary.mb-3
+              h4.card-title Asset Category
+              p.card-text add asset category
+              a.btn.btn-primary.btn-lg(href="/assetcategories/viewassetcategories")
+                i.fas.fa-plus.me-2
+                | Manage Asset Categories
+    
+    footer.bg-dark.text-white.text-center.py-3.mt-5
+      p &copy; 2025 Asset Management System. All rights reserved.
+    
+   
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")

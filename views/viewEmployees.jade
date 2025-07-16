@@ -1,0 +1,92 @@
+extends layout 
+
+block content
+    .container-fluid.py-4
+      .row
+      .col-12
+          h1.mb-4.text-center Employee Management System
+          
+          .card.shadow
+            .card-header.bg-primary.text-white
+              .d-flex.justify-content-between.align-items-center
+                h5.mb-0 Employee List
+                a.btn.btn-light.btn-sm(href='/employees/addEmployee') Add New Employee
+                
+            .card-body
+              .row.mb-3
+                .col-md-4
+                  .form-group
+                    label(for='statusFilter') Filter by Status:
+                    select#statusFilter.form-select
+                      option(value='all') All Employees
+                      option(value='true') Active Only
+                      option(value='false') Inactive Only
+                      
+              .table-responsive
+                table#employeeTable.table.table-striped.table-hover
+                  thead.table-dark
+                    tr
+                      th ID
+                      th Name
+                      th Position
+                      th Status
+                      th Actions
+                  tbody
+                    each employee in employees
+                      tr
+                        td= employee.id
+                        td= employee.name
+                        td= employee.position
+                        td
+                          if employee.isActive
+                            span.badge.bg-success active
+                          else
+                            span.badge.bg-danger inactive
+                        td
+                          .btn-group
+                            a.btn.btn-sm.btn-outline-primary(href=`/employees/viewEditEmployee/${employee.id}`) Edit
+                           
+
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js')
+   
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
+   
+    script(src='https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js')
+    script.
+      $(document).ready(function() {
+        var table = $('#employeeTable').DataTable({
+          searching: true,
+          ordering: true,
+          paging: true,
+          filtering : true,
+          pageLength: 10,
+          responsive: true,
+          language: {
+            search: "Search employees:",
+            lengthMenu: "Show _MENU_ employees per page",
+            info: "Showing _START_ to _END_ of _TOTAL_ employees",
+            infoEmpty: "No employees found",
+            infoFiltered: "(filtered from _MAX_ total employees)"
+          }
+        });
+
+        // Custom status filter
+        $('#statusFilter').on('change', function() {
+          var status = $(this).val();
+          console.log('Selected status:', status);
+          if (status === 'all') {
+            table.column(3).search('').draw();
+          } else if (status === 'true') {
+            console.log("status is true");
+            table.column(3).search('active')
+            table.column(3).search('^active$', true, false).draw();
+          } else if (status === 'false') {
+             console.log(table.column(3).search('inactive'));
+            table.column(3).search('inactive').draw();
+          }
+        });
+
+       
+      });

@@ -1,0 +1,23 @@
+{
+  "name": "sqldatabase",
+  "version": "1.0.0",
+  "description": "demo of how to use postgres sql",
+  "main": " index.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "author": "junaid",
+  "license": "ISC",
+  "dependencies": {
+    "datatables.net-dt": "^2.3.2",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "jade": "^1.11.0",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.3"
+  }
+}

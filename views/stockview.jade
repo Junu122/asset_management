@@ -1,0 +1,59 @@
+extends layout 
+
+block content
+   .container.bodycontainer
+    h2 Stock View - Available Assets
+    
+    each branch, branchName in branchTotals
+      .card.mb-3
+        .card-header
+          h4 #{branchName} Branch (#{branch.count} assets)
+        .card-body
+          table.table.table-striped(id='stock-table-' + branchName)
+            thead
+              tr
+                th Asset Name
+                th Serial Number
+                th Make/Model
+                th Purchase Date
+                th Category
+            tbody
+              each asset in branch.assets
+                tr
+                  td #{asset.name}
+                  td #{asset.serialNumber}
+                  td #{asset.make} #{asset.model}
+                  td #{asset.purchaseDate.toDateString()}
+                  td #{asset.category.categoryName}
+    
+    .card.bg-light
+      .card-body
+        h3 Total Available Assets: #{grandTotal}
+                           
+
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js')
+   
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
+   
+    script(src='https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js')
+    script.
+      $(document).ready(function() {
+       var table=$('[id^="stock-table-"]').DataTable({
+         searching: true,
+          ordering: false,
+          paging: true,
+          filtering : false,
+          pageLength: 10,
+          responsive: true,
+          language: {
+            search: "Search Asset Category:",
+            lengthMenu: "Show _MENU_ category per page",
+            info: "Showing _START_ to _END_ of _TOTAL_ assets category",
+            infoEmpty: "No asset category found",
+            infoFiltered: "(filtered from _MAX_ total assets category)"
+          }
+       });
+      });
+ 
